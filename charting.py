@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib
 
-
 pandas_df = pd.read_csv('outspark.csv')
 pandas_df = pandas_df[['date','CTratio']]
 pandas_df.set_index('date',inplace=True)
@@ -57,7 +56,7 @@ plt.savefig('new_cases.png', dpi=100)
 ####################################################
 pandas_df = pd.read_csv('outspark.csv')
 pandas_df = pandas_df[['date','new_tests','new_cases']]
-
+pandas_df.set_index('date',inplace=True)
 rollingavg = pandas_df.rolling(7, min_periods=1).mean()
 rollingavg.columns = ['new_tests_rolling_mean','new_cases_rolling_mean']
 
@@ -80,6 +79,7 @@ plt.savefig('new_cases.png', dpi=100)
 ####################################################
 pandas_df = pd.read_csv('outspark.csv')
 pandas_df = pandas_df[['date','new_tests','new_cases']]
+pandas_df.set_index('date',inplace=True)
 rollingavg = pandas_df.rolling(7, min_periods=1).mean()
 rollingavg.columns = ['new_tests_rolling_mean', 'new_cases_rolling_mean']
 
@@ -98,6 +98,7 @@ plt.savefig('new_tests_cases.png', dpi=100)
 ####################################################
 pandas_df = pd.read_csv('outspark.csv')
 pandas_df = pandas_df[['date','new_tests','new_cases']]
+pandas_df.set_index('date',inplace=True)
 rollingavg = pandas_df.rolling(7, min_periods=1).mean()
 rollingavg.columns = ['new_tests_rolling_mean', 'new_cases_rolling_mean']
 
