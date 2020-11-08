@@ -46,13 +46,18 @@ plt.savefig('new_cases.png', dpi=100)
 ####################################################
 pandas_df = pd.read_csv('outspark.csv')
 pandas_df = pandas_df[['date','new_tests','new_cases']]
+
 rollingavg = pandas_df.rolling(7, min_periods=1).mean()
-rollingavg.columns = ['new_cases_rolling_mean','new_tests_rolling_mean']
+rollingavg.columns = ['new_tests_rolling_mean','new_cases_rolling_mean']
+
+print(rollingavg)
+
 
 pandas_df2 = pandas_df[['date','new_tests','new_cases']]
 pandas_df2 = pandas_df2.merge(rollingavg,right_index=True, left_index=True)
 pandas_df2 = pandas_df2[['date','new_tests','new_cases','new_tests_rolling_mean', 'new_cases_rolling_mean']]
 pandas_df2 = pandas_df2[['date','new_cases','new_cases_rolling_mean']]
+print(pandas_df2)
 
 #plot data
 fig, ax = plt.subplots(figsize=(30,14))
