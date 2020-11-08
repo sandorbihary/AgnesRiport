@@ -39,3 +39,4 @@ df3.orderBy('date',ascending=False).show()
 pandas_df = df3.toPandas()
 pandas_df
 pandas_df.to_csv(r'outspark.csv')
+spark.stop()
