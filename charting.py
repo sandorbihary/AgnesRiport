@@ -8,6 +8,17 @@ pandas_df = pd.read_csv('outspark.csv')
 pandas_df = pandas_df[['date','CTratio']]
 pandas_df.set_index('date',inplace=True)
 
+rollingavg = pandas_df.rolling(7, min_periods=1).mean()
+rollingavg.columns = ['CTratio_rolling_mean']
+print(rollingavg)
+
+#pandas_df2 = pandas_df[['date','CTratio']]
+pandas_df2 = pandas_df
+pandas_df2 = pandas_df2.merge(rollingavg,right_index=True, left_index=True)
+#pandas_df2 = pandas_df2[['date','CTratio','CTratio_rolling_mean']]
+print(pandas_df2)
+
+
 #disable dislplay
 plt.switch_backend('agg')
 #set ggplot style
@@ -16,7 +27,7 @@ plt.style.use('ggplot')
 
 #plot data
 fig, ax = plt.subplots(figsize=(30,14))
-pandas_df.plot(ax=ax)
+pandas_df2.plot(ax=ax)
 plt.savefig('ctratio.png', dpi=100)
 ######################################################
 
